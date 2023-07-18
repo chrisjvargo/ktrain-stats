@@ -171,11 +171,11 @@ class TabularPredictor(Predictor):
                 "Explanation for class = %s (%s=%s): "
                 % (self.get_classes()[class_id], r_key, r_val)
             )
-        plt.show(
-            shap.force_plot(
-                expected_value, shap_values, df_display_row, matplotlib=True
-            )
-        )
+        # plt.show(
+        #     shap.force_plot(
+        #         expected_value, shap_values, df_display_row, matplotlib=True
+        #     )
+        # )
 
         return (shap_values, df_display_row)
 
