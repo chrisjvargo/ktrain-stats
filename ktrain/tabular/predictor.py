@@ -176,15 +176,6 @@ class TabularPredictor(Predictor):
                 expected_value, shap_values, df_display_row, matplotlib=True
             )
         )
-        shap_values = explainer.shap_values(X_valid)
 
-        plt.show(
-            shap.force_plot(explainer.expected_value, shap_values, X_valid)
-            )
-        
-        plt.show(
-        shap.summary_plot(shap_values, X_valid)
-
-            )
-        return (expected_value, shap_values, df_display_row)
+        return (shap_values, df_display_row)
 
