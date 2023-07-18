@@ -176,5 +176,9 @@ class TabularPredictor(Predictor):
                 expected_value, shap_values, df_display_row, matplotlib=True
             )
         )
+
+        plt.show(
+            shap.plots.beeswarm(shap_values, order=shap_values.abs.max(0))
+            )
         return (expected_value, shap_values, df_display_row)
 
