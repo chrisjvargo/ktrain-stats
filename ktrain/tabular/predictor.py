@@ -158,14 +158,17 @@ class TabularPredictor(Predictor):
         explainer = shap.KernelExplainer(f, df.iloc[:background_size, :])
         shap_values = explainer.shap_values(df_row, nsamples=nsamples, l1_reg="aic")
         # Create a list of variable names
-        var_names = list(df_display_row.index)
+        # var_names = list(df_display_row.index)
         
-        # If there are more shap_values than variable names, append placeholder names
-        if len(shap_values) > len(var_names):
-            var_names += ['var_{}'.format(i) for i in range(len(var_names), len(shap_values))]
+        # # If there are more shap_values than variable names, append placeholder names
+        # if len(shap_values) > len(var_names):
+        #     var_names += ['var_{}'.format(i) for i in range(len(var_names), len(shap_values))]
         
-        # Create a dictionary of shap values with corresponding variable names
-        shap_dict = dict(zip(var_names, shap_values))        
+        # # Create a dictionary of shap values with corresponding variable names
+        # shap_dict = dict(zip(var_names, shap_values))
+
+        shap_dict = dict(zip(df_display_row.index, shap_values))
+
         expected_value = explainer.expected_value
 
         if not np.issubdtype(type(explainer.expected_value), np.floating):
