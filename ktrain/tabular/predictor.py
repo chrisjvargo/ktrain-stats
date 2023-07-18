@@ -157,7 +157,7 @@ class TabularPredictor(Predictor):
         # shap
         explainer = shap.KernelExplainer(f, df.iloc[:background_size, :])
         shap_values = explainer.shap_values(df_row, nsamples=nsamples, l1_reg="aic")
-        shap_df = pd.DataFrame(data=shap_values, columns=df_display_row.columns)
+        shap_df = pd.DataFrame(data=shap_values, index=df_display_row.index).T
 
         expected_value = explainer.expected_value
 
