@@ -180,5 +180,9 @@ class TabularPredictor(Predictor):
         plt.show(
             shap.plots.beeswarm(shap_values, order=shap_values.abs.max(0))
             )
+        
+        plt.show(
+        shap.plots.scatter(shap_values[:, "giveaway_amount"], color=shap_values)
+            )
         return (expected_value, shap_values, df_display_row)
 
