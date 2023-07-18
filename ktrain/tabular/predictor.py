@@ -157,8 +157,6 @@ class TabularPredictor(Predictor):
         # shap
         explainer = shap.KernelExplainer(f, df.iloc[:background_size, :])
         shap_values = explainer.shap_values(df_row, nsamples=nsamples, l1_reg="aic")
-        shap_df = pd.DataFrame(data=shap_values, index=df_display_row.index).T
-
         expected_value = explainer.expected_value
 
         if not np.issubdtype(type(explainer.expected_value), np.floating):
@@ -178,5 +176,5 @@ class TabularPredictor(Predictor):
                 expected_value, shap_values, df_display_row, matplotlib=True
             )
         )
-        return shap_df
+        return (expected_value, shap_values, df_display_row)
 
